@@ -1,4 +1,5 @@
 #All questions must use a loop for full points.
+import random
 
 def oddNumbers(n:int) ->str:
     """
@@ -7,7 +8,15 @@ def oddNumbers(n:int) ->str:
     example oddNumbers(8) -> "1 3 5 7"
     example oddNumbers(-8) -> ""
     """
-
+    x = 1
+    string =""
+    while x<=n:
+        string = string + f"{x} "
+        x+=2
+    correctString = string[:len(string)-1]
+    print(correctString)
+    return(correctString)
+oddNumbers(9)
 
 def backwards(n)-> int:
     """
@@ -17,6 +26,15 @@ def backwards(n)-> int:
     example backwards(8) -> "8 7 6 5 4 3 2 1"
     example backwards(-2) -> ""
     """
+
+    string = ""
+    while n>=1:
+        string = string + f"{n} "
+        n-=1
+    correctString = string[:len(string)-1]
+    print(correctString)
+    return(correctString)
+backwards(8)
 
 
 
@@ -28,7 +46,17 @@ def randomRepeating():
     :return:
     """
     tries = 0
+
+    x=random.randint(1,10)
+    while x<10:
+        tries += 1
+        x=random.randint(1,10)
+    tries += 1
     print(f"it took {tries} tries to get a 10")
+    return(tries)
+
+randomRepeating()
+
 def randomRange(n):
     """
     Generate a random number from 1 to 100 n number of times. Then after that is
@@ -37,12 +65,46 @@ def randomRange(n):
     :param n:
     :return:
     """
+
+    """
+    highest=1
+    lowest=100
+    for x in range(0,n):
+        n=random.randint(1,100)
+        print(n)
+        if n>highest:
+            highest = n
+        if n<lowest:
+            lowest = n
+    print(f"highest = {highest}, lowest = {lowest}")
+    """
+
+    for x in range(0,n):
+        n = random.randint(1,100)
+        if x==0:
+            highest = n
+            lowest = n
+        print(n)
+        if n>highest:
+            highest = n
+        if n<lowest:
+            lowest = n
+    print(f"highest = {highest}, lowest = {lowest}")
+randomRange(20)
+
 def reverse(word:str)->str:
     """
     Takes in a string as an argument and return the given string in reverse.
     example reverse("cat") -> "tac"
     example reverse("Hello") -> "olleH"
     """
+    reversed = ""
+    for x in range(len(word)-1,-1,-1):
+        reversed += word[x]
+        print(f"x={x}, word[x]={word[x]}, reversed={reversed}")
+
+    print(reversed)
+    return(reversed)
 
 def fizzBuzzContinuous(n):
     """
@@ -58,6 +120,20 @@ def fizzBuzzContinuous(n):
     :param n:
     :return:
     """
+    result=""
+    for x in range(1,n+1):
+        if x%3==0 and x%5==0:
+            result+= "fizzbuzz "
+        elif x%5==0:
+            result+= "buzz "
+        elif x%3==0:
+            result+= "fizz "
+        else:
+            result+= str(x)+ " "
+    resultFinal = result[:len(result)-1]
+
+    return(resultFinal)
+
 
 def collatz(n):
     """
@@ -69,7 +145,16 @@ def collatz(n):
     :param n:
     :return:
     """
-
+    x=n
+    result = ""
+    while x!=1:
+        result += str(x)+" "
+        if x%2==0:
+            x=int(x/2)
+        else:
+            x = x*3+1
+    result += str(x)
+    return(result)
 
 def fibonacci(n):
     """
@@ -84,5 +169,17 @@ def fibonacci(n):
     :return:
     """
 
+    if n==0:
+        return ("")
+    elif n==1:
+        return("0")
+
+    i = 0
+    j = 1
+    result = "0 1"
+    for x in range (2,n):
+        result += " " + str(i+j)
+        i, j = j, i+j
+    return (result)
 
 print(fibonacci(300))
